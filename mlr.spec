@@ -1,0 +1,45 @@
+Summary: Name-indexed data processing tool
+Name: mlr
+Version: 3.3.2
+Release: 1%{?dist}
+License: BSD2
+Group: Applications/Text
+Source: https://github.com/johnkerl/miller/releases/download/v%{version}/%{name}-%{version}.tar.gz
+URL: http://johnkerl.org/miller/doc
+Buildroot: %{_tmppath}/%{name}-%{version}-root
+BuildRequires: flex >= 2.5.35
+
+%description
+Miller (mlr) allows name-indexed data such as CSV and JSON files to be
+processed with functions equivalent to sed, awk, cut, join, sort etc. It can
+convert between formats, preserves headers when sorting or reversing, and
+streams data where possible so its memory requirements stay small. It works
+well with pipes and can feed "tail -f".
+
+%prep
+%setup -q -n %{name}-%{version}
+
+%build
+%configure
+make
+
+%check
+make check
+
+%install
+rm -rf ${RPM_BUILD_ROOT}
+make install DESTDIR="$RPM_BUILD_ROOT"
+
+%clean
+rm -rf ${RPM_BUILD_ROOT}
+
+%files
+%defattr(755, root, root, -)
+%{_bindir}/mlr
+%defattr(644, root, root, -)
+%{_mandir}/man1/mlr.1.gz
+%defattr(-,root,root)
+
+%changelog
+* Sun Feb 07 2016 John Kerl <kerl.john.r@gmail.com>
+- Initial spec-file submission for Miller
