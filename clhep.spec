@@ -35,11 +35,10 @@ make %{?_smp_mflags}
 
 %install
 cd %{_builddir}/%{name}.%{version}/build
-make install DESTDIR=$RPM_BUILD_ROOT
+##make install DESTDIR=%{buildroot}
+##make install
 
-#%makeinstall
-# leave static libraries in the package until installed cmake files are fixed
-#rm %{buildroot}%{_libdir}/*.a
+%make_install
 
 %files
 %defattr(-,root,root)
