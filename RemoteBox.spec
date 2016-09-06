@@ -2,7 +2,7 @@
 %global __provides_exclude ^perl\\(vboxService\\)
 
 Name:           RemoteBox
-Version:        2.0
+Version:        2.2
 Release:        1%{?dist}
 Summary:        Open Source VirtualBox Client with Remote Management
 License:        GPLv2
@@ -63,7 +63,7 @@ desktop-file-install --dir=%{buildroot}%{_datadir}/applications %{S:1}
 install -pm644 share/remotebox/icons/remotebox.png %{buildroot}%{_datadir}/pixmaps
 
 %check
-appdata-validate --nonet %{buildroot}%{_datadir}/appdata/remotebox.appdata.xml
+appstream-util validate-relax %{buildroot}%{_datadir}/appdata/remotebox.appdata.xml
 
 %files
 %doc docs/*
@@ -74,40 +74,5 @@ appdata-validate --nonet %{buildroot}%{_datadir}/appdata/remotebox.appdata.xml
 %{_datadir}/%{name}/
 
 %changelog
-* Tue Jun 16 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.9-3
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
-
-* Wed Jun 03 2015 Jitka Plesnikova <jplesnik@redhat.com> - 1.9-2
-- Perl 5.22 rebuild
-
-* Wed Jan 21 2015 Christopher Meng <rpm@cicku.me> - 1.9-1
-- Update to 1.9
-
-* Tue Aug 26 2014 Jitka Plesnikova <jplesnik@redhat.com> - 1.8.1-3
-- Perl 5.20 rebuild
-
-* Mon Jun 16 2014 Christopher Meng <rpm@cicku.me> - 1.8.1-2
-- Update to 1.8.1
-- Provide an appropriate appdata file.
-
-* Fri Jun 06 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.8-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
-
-* Sat May 17 2014 Christopher Meng <rpm@cicku.me> - 1.8-1
-- Update to 1.8
-
-* Fri Feb 07 2014 Christopher Meng <rpm@cicku.me> - 1.7-1
-- Update to 1.7
-
-* Tue Oct 29 2013 Christopher Meng <rpm@cicku.me> - 1.6-2
-- Correct the license.
-
-* Fri Oct 25 2013 Christopher Meng <rpm@cicku.me> - 1.6-1
-- Update to 1.6
-
-* Thu Jun 06 2013 Christopher Meng <rpm@cicku.me> - 1.5-2
-- SPEC cleanup.
-- Fix errors of desktop file.
-
-* Thu Apr 18 2013 Christopher Meng <rpm@cicku.me> - 1.5-1
-- Initial Package.
+* Tue Sep 06 2016 Adrian Sevcenco <adrian.sev@gmail.com>
+- Rebuilt for 2.2 http://remotebox.knobgoblin.org.uk/
