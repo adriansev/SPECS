@@ -8,6 +8,9 @@ License: OpenSource
 Group: CERN
 BuildRoot: %{_tmppath}/%{name}-root-%(%{__id_u} -n)
 
+Requires: libxml2
+BuildRequires: libxml2-devel
+
 %ifarch x86_64
   %define __lib lib64
 %else
@@ -53,5 +56,5 @@ rm -rf $RPM_BUILD_ROOT
 %post
 %preun
 %postun
-echo 
+echo
 
