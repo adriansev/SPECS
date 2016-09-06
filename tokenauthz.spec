@@ -1,7 +1,7 @@
 Summary: TTokenAuthz authorization library
 Name: tokenauthz
 Version: 1.1.10
-Release: 1
+Release: 2
 URL: none
 Source0: %{name}-%{version}.tar.gz
 License: OpenSource
@@ -28,6 +28,7 @@ The software and RPM packaging was provided by Andreas.Joachim.Peters@cern.ch [C
 %setup -q
 
 %build
+./BOOTSTRAP
 ./configure --prefix=%{__prefix} --libdir=%{__libdir} --includedir=%{__incdir}
 make %{?_smp_mflags}
 
