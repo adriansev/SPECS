@@ -60,7 +60,8 @@ make %{?_smp_mflags}
 
 %install
 cd %{_builddir}/%{name}.%{version}/build
-%makeinstall
+make install DESTDIR=%{buildroot}
+
 # leave static libraries in the package until installed cmake files are fixed
 #rm %{buildroot}%{_libdir}/*.a
 
@@ -74,8 +75,8 @@ cd %{_builddir}/%{name}.%{version}/build
 %files
 %defattr(-,root,root)
 %doc ChangeLog README.md COPYING
-%{_libdir}/libCLHEP*.so
 %{_bindir}/*
+%{_libdir}/libCLHEP*.so
 
 %files -n clhep-devel
 %defattr(-,root,root)
