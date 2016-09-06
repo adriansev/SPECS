@@ -1,6 +1,6 @@
 Name: htop
-Version: 2.0.0
-Release: 7%{?dist}
+Version: 2.0.2
+Release: 1%{?dist}
 Summary: Interactive process viewer
 Group: Applications/System
 License: GPL+
