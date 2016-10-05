@@ -6,13 +6,15 @@
 %global use_systemd 0
 %endif
 
-Summary:	MonALISA Application Monitoring API 
+Summary:	MonALISA Application Monitoring API
 Name:		ApMon_cpp
 Version:	2.2.8
-Epoch:		1
-Release:	4%{?dist}
+Epoch:    1
+Release:	5%{?dist}
 License:	none
 Group:		System Environment/Daemons
+
+Requires: perl
 
 Source0: 	%{name}-%{version}.tar.gz
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -32,6 +34,7 @@ ApMon is a set of flexible APIs that can be used by any application to send moni
 
 %prep
 %setup -q
+./BOOTSTRAP
 
 %build
 ./configure --prefix=%{__prefix} --libdir=%{__libdir} --includedir=%{__incdir}
