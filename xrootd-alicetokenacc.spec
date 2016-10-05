@@ -9,7 +9,7 @@
 Summary: Alice Token Authorization Acc plugin
 Name: xrootd-alicetokenacc
 Version: 1.3.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: none
 Group: CERN IT-DSS-TD
 
@@ -32,12 +32,13 @@ BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 AutoReqProv: no
 Requires: xrootd-server >= 4.1.0
-## Requires: tokenauthz >= 1.1.8
+Requires: tokenauthz >= 1.1.8
 ## Requires: xrootd-server >= 4.0.0 , xrootd-client >= 4.0.0 , tokenauthz , openssl
 
 BuildRequires: xrootd-private-devel >= 4.1.0
 BuildRequires: xrootd-devel >= 4.1.0
 BuildRequires: xrootd-server-devel >= 4.1.0
+BuildRequires: tokenauthz >= 1.1.8
 
 %description
 An authorization plugin for xrootd using the Alice Token authorization envelope.
