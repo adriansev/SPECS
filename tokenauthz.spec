@@ -8,8 +8,8 @@ License: OpenSource
 Group: CERN
 BuildRoot: %{_tmppath}/%{name}-root-%(%{__id_u} -n)
 
-Requires: libxml2
-BuildRequires: libxml2-devel
+Requires: libxml2 openssl libcurl zlib
+BuildRequires: libxml2-devel openssl-devel libcurl-devel zlib-devel
 
 %ifarch x86_64
   %define __lib lib64
