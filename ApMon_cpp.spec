@@ -15,6 +15,7 @@ License:	none
 Group:		System Environment/Daemons
 
 Requires: perl
+BuildRequires: autoconf, automake, libtool
 
 Source0: 	%{name}-%{version}.tar.gz
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
