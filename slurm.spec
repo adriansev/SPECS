@@ -1,3 +1,7 @@
+%undefine _hardened_build
+%global _hardened_cflags "-Wl,-z,lazy"
+%global _hardened_ldflags "-Wl,-z,lazy"
+
 # Note that this package is not relocatable
 
 #
@@ -86,14 +90,15 @@
 %endif
 
 Name:    slurm
-Version: 16.05.4
+Version: 16.05.5
 Release: 1%{?dist}
 
 Summary: Slurm Workload Manager
 
 License: GPL
 Group: System Environment/Base
-Source: slurm-16.05.4.tar.bz2
+Source: slurm-16.05.5.tar.bz2
+Patch0: slurm-fortify-optimise.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 URL: http://slurm.schedmd.com/
 
@@ -431,7 +436,9 @@ Gives the ability for Slurm to use Berkeley Lab Checkpoint/Restart
 #############################################################################
 
 %prep
-%setup -n slurm-16.05.4
+%setup -n slurm-16.05.5
+
+%patch0 -p1
 
 %build
 %configure \
@@ -650,7 +657,7 @@ Cflags: -I\${includedir}
 Libs: -L\${libdir} -lslurm
 Description: Slurm API
 Name: slurm
-Version: 16.05.4
+Version: 16.05.5
 EOF
 
 %if %{slurm_with bluegene}
