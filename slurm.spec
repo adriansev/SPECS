@@ -90,14 +90,14 @@
 %endif
 
 Name:    slurm
-Version: 16.05.5
+Version: 16.05.7
 Release: 1%{?dist}
 
 Summary: Slurm Workload Manager
 
 License: GPL
 Group: System Environment/Base
-Source: slurm-16.05.5.tar.bz2
+Source: slurm-16.05.7.tar.bz2
 Patch0: slurm-fortify-optimise.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 URL: http://slurm.schedmd.com/
@@ -436,7 +436,7 @@ Gives the ability for Slurm to use Berkeley Lab Checkpoint/Restart
 #############################################################################
 
 %prep
-%setup -n slurm-16.05.5
+%setup -n slurm-16.05.7
 
 %patch0 -p1
 
@@ -657,7 +657,7 @@ Cflags: -I\${includedir}
 Libs: -L\${libdir} -lslurm
 Description: Slurm API
 Name: slurm
-Version: 16.05.5
+Version: 16.05.7
 EOF
 
 %if %{slurm_with bluegene}
@@ -739,6 +739,8 @@ test -f $RPM_BUILD_ROOT/%{_libdir}/slurm/mpi_mvapich.so              &&
    echo %{_libdir}/slurm/mpi_mvapich.so              >> $LIST
 test -f $RPM_BUILD_ROOT/%{_libdir}/slurm/node_features_knl_cray.so   &&
    echo %{_libdir}/slurm/node_features_knl_cray.so   >> $LIST
+test -f $RPM_BUILD_ROOT/%{_libdir}/slurm/node_features_knl_generic.so &&
+   echo %{_libdir}/slurm/node_features_knl_generic.so   >> $LIST
 test -f $RPM_BUILD_ROOT/%{_libdir}/slurm/power_cray.so               &&
    echo %{_libdir}/slurm/power_cray.so               >> $LIST
 test -f $RPM_BUILD_ROOT/%{_libdir}/slurm/select_bluegene.so          &&
