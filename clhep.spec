@@ -17,7 +17,7 @@
 
 
 Name:           clhep
-Version:        2.3.3.2
+Version:        2.3.4.3
 Release:        1
 Summary:        A class library for high energy physics
 License:        GPL-3.0
