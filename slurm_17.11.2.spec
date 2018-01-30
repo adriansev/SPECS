@@ -1,3 +1,7 @@
+%undefine _hardened_build
+%global _hardened_cflags "-Wl,-z,lazy"
+%global _hardened_ldflags "-Wl,-z,lazy"
+
 Name:		slurm
 Version:	17.11.2
 %global rel	1
