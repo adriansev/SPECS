@@ -1,25 +1,21 @@
 Summary: TTokenAuthz authorization library
 Name: tokenauthz
-Version: 1.1.10
-Release: 2
+Version: 1.2.0
+Release: 2%{?dist}
 URL: none
 Source0: %{name}-%{version}.tar.gz
 License: OpenSource
+#Prefix: /
 Group: CERN
-BuildRoot: %{_tmppath}/%{name}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-root
 
-Requires: libxml2 openssl libcurl zlib
-BuildRequires: libxml2-devel openssl-devel libcurl-devel zlib-devel
+BuildRequires: libxml2-devel, libcurl-devel
 
-%ifarch x86_64
-  %define __lib lib64
+%if %{?fedora}%{!?fedora:0} >= 21
+BuildRequires: compat-openssl10-devel
 %else
-  %define __lib lib
+BuildRequires: openssl-devel
 %endif
-
-%define __prefix /usr
-%define __libdir /usr/%{__lib}
-%define __incdir /usr/include
 
 %description
 This package contains the token authorization library.
@@ -29,15 +25,20 @@ The software and RPM packaging was provided by Andreas.Joachim.Peters@cern.ch [C
 
 %prep
 %setup -q
+./bootstrap.sh
 
 %build
-./BOOTSTRAP
-./configure --prefix=%{__prefix} --libdir=%{__libdir} --includedir=%{__incdir}
-make %{?_smp_mflags}
+./configure --prefix=%{_prefix} --libdir=%{_libdir} --includedir=%{_includedir}
+make
 
 %install
 make DESTDIR=$RPM_BUILD_ROOT install
-find $RPM_BUILD_ROOT \( -type f -o -type l \) -print | sed "s#^$RPM_BUILD_ROOT/*#/#" > RPM-FILE-LIST
+cp SealedEnvelope/tokenauthz_create SealedEnvelope/xrdauthz.pl SealedEnvelope/xrdauthz-read.pl SealedEnvelope/xrdauthz-write.pl $RPM_BUILD_ROOT/usr/bin/
+
+find $RPM_BUILD_ROOT \( -type f -o -type l \) -print \
+    | sed "s#^$RPM_BUILD_ROOT/*#/#" > RPM-FILE-LIST
+
+##for pl in *.pl; do echo "/usr/bin/${pl}"; done > RPM-FILE-LIST
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -56,5 +57,5 @@ rm -rf $RPM_BUILD_ROOT
 %post
 %preun
 %postun
-echo
+echo 
 

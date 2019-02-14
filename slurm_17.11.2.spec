@@ -71,7 +71,13 @@ Obsoletes: slurm-lua slurm-munge slurm-plugins
 %{!?_unitdir: %global _unitdir /lib/systemd/systemd}
 
 %if %{with openssl}
-BuildRequires: openssl-devel >= 0.9.6 openssl >= 0.9.6
+%if 0%{?rhel} == 7
+BuildRequires: openssl-devel
+BuildRequires: openssl
+%else
+BuildRequires: compat-openssl10-devel
+BuildRequires: compat-openssl10
+%endif
 %endif
 
 %define use_mysql_devel %(perl -e '`rpm -q mariadb-devel`; print $?;')
